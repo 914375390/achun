@@ -45,3 +45,12 @@ a#site-name {
 #footer #footer-wrap a {
     color: var(--font-color)
 }
+
+#sidebar #sidebar-menus {
+    background: rgba(255, 215, 255, .25);
+    backdrop-filter: saturate(100%) blur(5px);
+}
+
+#sidebar #menu-mask {
+    background: none;
+}
