@@ -22,7 +22,7 @@ a#site-name {
 .layout_post>#page,
 .layout_post>#post,
 #aside-content .card-widget {
-    background: rgba(255, 255, 255, .15);
+    background: linear-gradient(90deg, rgb(247 149 51 / 42%), rgb(243 112 85 / 43%) 15%, rgb(239 78 123 / 31%) 30%, rgb(161 102 171 / 55%) 44%, rgb(80 115 184 / 48%) 58%, rgb(16 152 173 / 46%) 72%, rgb(7 179 155 / 50%) 86%, rgb(109 186 130 / 59%));
     backdrop-filter: saturate(100%) blur(5px);
 }
 
