@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'font1';
-    src: url('./fon1.ttf');
+    src: url('/fon1.ttf');
     /* 修改成你的字体 */
     font-display: swap
 }
