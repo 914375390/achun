@@ -5,6 +5,31 @@
     font-display: swap
 }
 
+body {
+    color: #e8ebe9
+}
+
+
+/* 文章日期颜色 */
+
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap {
+    color: #e8ebe9;
+}
+
+#recent-posts>.recent-post-item>.recent-post-info>.article-title {
+    color: #ffffff
+}
+
+
+/* 手机端文章宽度 */
+
+@media screen and (max-width: 900px) {
+    .layout>div:first-child {
+        width: 87% !important;
+        margin: 0 auto
+    }
+}
+
 h1#site-title {
     font-family: arzhu!important
 }
@@ -53,4 +78,26 @@ a#site-name {
 
 #sidebar #menu-mask {
     background: none;
+}
+
+#sidebar #sidebar-menus .menus_items .site-page {
+    color: #0d0c0c;
+}
+
+#aside-content .aside-list>.aside-list-item .content>.title,
+#aside-content .aside-list>.aside-list-item .content>.comment {
+    color: #e8ebe9;
+}
+
+#aside-content .aside-list>.aside-list-item .content>time,
+#aside-content .aside-list>.aside-list-item .content>.name {
+    color: #d4d6da
+}
+
+.tk-comments {
+    color: #0d0c0c;
+}
+
+#article-container {
+    color: #0d0c0c;
 }
