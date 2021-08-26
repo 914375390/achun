@@ -1,4 +1,5 @@
 //搞笑标题
+console.log(document.getElementsByClassName("aplayer"))
 var OriginTitle = document.title;
 var titleTime;
 document.addEventListener('visibilitychange', function() {

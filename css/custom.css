@@ -1,10 +1,3 @@
-@font-face {
-    font-family: 'font1';
-    src: url('/fon1.ttf');
-    /* 修改成你的字体 */
-    font-display: swap
-}
-
 body {
     color: #e8ebe9
 }
@@ -28,18 +21,6 @@ body {
         width: 87% !important;
         margin: 0 auto
     }
-}
-
-h1#site-title {
-    font-family: arzhu!important
-}
-
-span#subtitle {
-    font-family: arzhu!important
-}
-
-a#site-name {
-    font-family: arzhu!important
 }
 
 #recent-posts>.recent-post-item,
@@ -82,6 +63,10 @@ a#site-name {
 
 #sidebar #sidebar-menus .menus_items .site-page {
     color: #0d0c0c;
+}
+
+#sidebar #sidebar-menus .site-data .data-item .data-item-link .headline {
+    color: #dbc1b9;
 }
 
 #aside-content .aside-list>.aside-list-item .content>.title,
