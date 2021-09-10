@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>微信小程序之下拉列表</title>
+      <link href="/2021/09/10/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8/"/>
+      <url>/2021/09/10/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="微信小程序之自定义下拉列表"><a href="#微信小程序之自定义下拉列表" class="headerlink" title="微信小程序之自定义下拉列表"></a>微信小程序之自定义下拉列表</h2><p>在achun完成某个小程序作业的途中需要用到一个类似android spiner下拉列表的组件，发现在小程序文档里并木有，so百度了看到一个比较好的，调用超简单</p><h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="https://img-blog.csdnimg.cn/20181210142619472.png"></p><h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><h4 id="在wxml添加"><a href="#在wxml添加" class="headerlink" title="在wxml添加"></a>在wxml添加</h4><pre><code>&lt;view class=&#39;top&#39;&gt;  &lt;view class=&#39;top-text&#39;&gt; 选择班别&lt;/view&gt;  &lt;!-- 下拉框 --&gt;  &lt;view class=&#39;top-selected&#39; bindtap=&#39;bindShowMsg&#39;&gt;    &lt;text&gt;&#123;&#123;grade_name&#125;&#125;&lt;/text&gt;  &lt;/view&gt;  &lt;!-- 下拉需要显示的列表 --&gt;  &lt;view class=&quot;select_box&quot; wx:if=&quot;&#123;&#123;select&#125;&#125;&quot;&gt;    &lt;view wx:for=&quot;&#123;&#123;grades&#125;&#125;&quot; wx:key=&quot;unique&quot;&gt;      &lt;view class=&quot;select_one&quot; bindtap=&quot;mySelect&quot; data-name=&quot;&#123;&#123;item&#125;&#125;&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/view&gt;    &lt;/view&gt;  &lt;/view&gt;&lt;/view&gt;</code></pre><h4 id="在wxss添加"><a href="#在wxss添加" class="headerlink" title="在wxss添加"></a>在wxss添加</h4><pre><code>/* 顶部 */.top &#123;  width: 100vw;  height: 80rpx;  padding: 0 20rpx;  line-height: 80rpx;  font-size: 34rpx;  border-bottom: 1px solid #000;&#125;.top-text &#123;  float: left;&#125;/* 下拉框 */.top-selected &#123;  width: 50%;  display: flex;  float: right;  align-items: center;  justify-content: space-between;  border: 1px solid #ccc;  padding: 0 10rpx;  font-size: 30rpx;&#125;/* 下拉内容 */.select_box &#123;  background-color: #fff;  padding: 0 20rpx;  width: 50%;  float: right;  position: relative;  right: 0;  z-index: 1;  overflow: hidden;  text-align: left;  animation: myfirst 0.5s;  font-size: 30rpx;&#125;.select_one &#123;  padding-left: 20rpx;  width: 100%;  height: 60rpx;  position: relative;  line-height: 60rpx;  border-bottom: 1px solid #ccc;&#125;/* 下拉过度效果 */@keyframes myfirst &#123;  from &#123;    height: 0rpx;  &#125;  to &#123;    height: 210rpx;  &#125;&#125;/* 下拉图标 */.top-selected image &#123;  height: 50rpx;  width: 50rpx;  position: absolute;  right: 0rpx;  top: 20rpx;&#125;</code></pre><h4 id="js页添加"><a href="#js页添加" class="headerlink" title="js页添加"></a>js页添加</h4><pre><code>Page(&#123;data: &#123;    select: false,    grade_name: &#39;--请选择--&#39;,    grades: [&#39;1班&#39;, &#39;2班&#39;, &#39;3班&#39;, ]  &#125;,  bindShowMsg() &#123;    this.setData(&#123;      select: !this.data.select    &#125;)  &#125;,  mySelect(e) &#123;    console.log(e)    var name = e.currentTarget.dataset.name    this.setData(&#123;      grade_name: name,      select: false    &#125;)  &#125;)&#125;</code></pre><h4 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h4><p>1.可以在onload方法里将你的数组数据setdata给grades数组，这样打开就是加载你的数组了<br>2.在mySelect接收点击的项，并调用所携带的数据</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二创 </tag>
+            
+            <tag> 小程序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何将hexo-douban多个模块合并</title>
       <link href="/2021/08/17/%E5%A6%82%E4%BD%95%E5%B0%86hexo-douban%E5%A4%9A%E4%B8%AA%E6%A8%A1%E5%9D%97%E5%90%88%E5%B9%B6/"/>
       <url>/2021/08/17/%E5%A6%82%E4%BD%95%E5%B0%86hexo-douban%E5%A4%9A%E4%B8%AA%E6%A8%A1%E5%9D%97%E5%90%88%E5%B9%B6/</url>
@@ -13,7 +40,7 @@
       
       <categories>
           
-          <category> HEXO </category>
+          <category> 编程 </category>
           
       </categories>
       
@@ -22,7 +49,7 @@
             
             <tag> 原创 </tag>
             
-            <tag> 技术 </tag>
+            <tag> HEXO </tag>
             
         </tags>
       
@@ -40,7 +67,7 @@
       
       <categories>
           
-          <category> 转载 </category>
+          <category> 生活 </category>
           
       </categories>
       
@@ -49,7 +76,7 @@
             
             <tag> 科普 </tag>
             
-            <tag> 方法 </tag>
+            <tag> 转载 </tag>
             
         </tags>
       
@@ -75,7 +102,7 @@
       <link href="/2021/08/14/%E9%AB%98%E8%B4%A8%E9%87%8F%E8%B5%84%E6%BA%90%E9%9B%86%E9%94%A6/"/>
       <url>/2021/08/14/%E9%AB%98%E8%B4%A8%E9%87%8F%E8%B5%84%E6%BA%90%E9%9B%86%E9%94%A6/</url>
       
-        <content type="html"><![CDATA[<h2 id="高质量资源集锦"><a href="#高质量资源集锦" class="headerlink" title="高质量资源集锦"></a>高质量资源集锦</h2><h3 id="如何寻找资源"><a href="#如何寻找资源" class="headerlink" title="如何寻找资源"></a>如何寻找资源</h3><p>在这里就先不说了！</p><h3 id="资源集成网站："><a href="#资源集成网站：" class="headerlink" title="资源集成网站："></a>资源集成网站：</h3><h4 id="阿虚同学的储物柜https-www-axutongxue-com"><a href="#阿虚同学的储物柜https-www-axutongxue-com" class="headerlink" title="阿虚同学的储物柜https://www.axutongxue.com/"></a>阿虚同学的储物柜<a href="https://www.axutongxue.com/">https://www.axutongxue.com/</a></h4><p>不管是考证，看视频，听音乐，学习等资源，只有你想不到，没有它做不到，真正解决一个满足所有。</p><h4 id="爱寻匿https-www-aixunni-com"><a href="#爱寻匿https-www-aixunni-com" class="headerlink" title="爱寻匿https://www.aixunni.com/"></a>爱寻匿<a href="https://www.aixunni.com/">https://www.aixunni.com/</a></h4><p>资源整合网站，对比前一个可能稍少，网站ui美化较好，个人经常使用为观看影视剧</p><h4 id="lackaarhttp-lackar-com-aa"><a href="#lackaarhttp-lackar-com-aa" class="headerlink" title="lackaarhttp://lackar.com/aa/"></a>lackaar<a href="http://lackar.com/aa/">http://lackar.com/aa/</a></h4><p>这个我不熟，没怎么用过</p><h3 id="个人推荐使用网站分享："><a href="#个人推荐使用网站分享：" class="headerlink" title="个人推荐使用网站分享："></a>个人推荐使用网站分享：</h3><h4 id="朋友圈文案生成器https-pyq-shadiao-app"><a href="#朋友圈文案生成器https-pyq-shadiao-app" class="headerlink" title="朋友圈文案生成器https://pyq.shadiao.app/"></a>朋友圈文案生成器<a href="https://pyq.shadiao.app/">https://pyq.shadiao.app/</a></h4><p>顾名思义，想文案想的脑壳疼的时候可以使用一下，网站也同时集成了彩虹屁生成器，脏话生成器，毒鸡汤生成器，记仇表情包生成器，脑洞真不错！</p><h4 id="novip视频-电脑-https-www-novipnoad-com"><a href="#novip视频-电脑-https-www-novipnoad-com" class="headerlink" title="novip视频(电脑)https://www.novipnoad.com/"></a>novip视频(电脑)<a href="https://www.novipnoad.com/">https://www.novipnoad.com/</a></h4><p>在微信浏览器跳转为美团页面，适合在电脑端打开，有众多1080p超高清电影，电视剧等，最近可能由于使用的人数越来越多，很多视频因为版权原因播放不了，所以该怎么说呢，太多人知道也不见得是一种好事，但还是分享一下吧</p><h4 id="虫部落社区https-www-chongbuluo-com"><a href="#虫部落社区https-www-chongbuluo-com" class="headerlink" title="虫部落社区https://www.chongbuluo.com/"></a>虫部落社区<a href="https://www.chongbuluo.com/">https://www.chongbuluo.com/</a></h4><p>很棒的社区，自从偶然踏进了这里，感觉打开了新大陆，有很多网站都是在这里知晓。</p><h4 id="wallhavenhttps-wallhaven-cc"><a href="#wallhavenhttps-wallhaven-cc" class="headerlink" title="wallhavenhttps://wallhaven.cc/"></a>wallhaven<a href="https://wallhaven.cc/">https://wallhaven.cc/</a></h4><p>高清免费动漫壁纸网站，质量超高，个人博客使用的图片均来自这里</p><h3 id="其他网站"><a href="#其他网站" class="headerlink" title="其他网站"></a>其他网站</h3><h4 id="摆地摊进货渠道https-gitmind-cn-app-doc-37a515614"><a href="#摆地摊进货渠道https-gitmind-cn-app-doc-37a515614" class="headerlink" title="摆地摊进货渠道https://gitmind.cn/app/doc/37a515614"></a>摆地摊进货渠道<a href="https://gitmind.cn/app/doc/37a515614">https://gitmind.cn/app/doc/37a515614</a></h4><h4 id="英语打字网站（电脑）https-kaiyiwing-gitee-io-qwerty-learner"><a href="#英语打字网站（电脑）https-kaiyiwing-gitee-io-qwerty-learner" class="headerlink" title="英语打字网站（电脑）https://kaiyiwing.gitee.io/qwerty-learner/"></a>英语打字网站（电脑）<a href="https://kaiyiwing.gitee.io/qwerty-learner/">https://kaiyiwing.gitee.io/qwerty-learner/</a></h4><p>如果你需要一边练习打字，一边背诵单词，那这个网站可以满足你</p><h4 id="windows更新伪装（电脑）https-fakeupdate-net"><a href="#windows更新伪装（电脑）https-fakeupdate-net" class="headerlink" title="windows更新伪装（电脑）https://fakeupdate.net/"></a>windows更新伪装（电脑）<a href="https://fakeupdate.net/">https://fakeupdate.net/</a></h4><p>有时候你可能需要去上一下厕所，但又不想暴露电脑在做什么的时候，你可以打开这个网站，选择伪装更新的系统，按F11全屏，这时你的电脑似乎在做系统更新。可防止无关人士窥屏</p><h4 id="新片场https-www-xinpianchang-com"><a href="#新片场https-www-xinpianchang-com" class="headerlink" title="新片场https://www.xinpianchang.com/"></a>新片场<a href="https://www.xinpianchang.com/">https://www.xinpianchang.com/</a></h4><p>视频剪辑学习网站，在这里你可以看到很多业内剪辑人的作品</p><h4 id="照片处理网http-photops-com"><a href="#照片处理网http-photops-com" class="headerlink" title="照片处理网http://photops.com/"></a>照片处理网<a href="http://photops.com/">http://photops.com/</a></h4><p>也叫ps自学网，网站是老网站，看起来已经没落了，但还是有很多大神在这里留下了经典的教程资源</p><h4 id="找相似https-www-similarsites-com"><a href="#找相似https-www-similarsites-com" class="headerlink" title="找相似https://www.similarsites.com/"></a>找相似<a href="https://www.similarsites.com/">https://www.similarsites.com/</a></h4><p>这个网站可以寻找同类型，类似的网站</p><h4 id="位置服务https-www-opengps-cn"><a href="#位置服务https-www-opengps-cn" class="headerlink" title="位置服务https://www.opengps.cn/"></a>位置服务<a href="https://www.opengps.cn/">https://www.opengps.cn/</a></h4><p>可以寻找ip地址的定位</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>还有很多有趣的网站等着我们去发掘，如果有幸你正在使用的话，可以在留言分享一下，但凡这个贴子有点用的话，也留个言好吗！</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="高质量资源集锦"><a href="#高质量资源集锦" class="headerlink" title="高质量资源集锦"></a>高质量资源集锦</h2><h3 id="资源集成网站："><a href="#资源集成网站：" class="headerlink" title="资源集成网站："></a>资源集成网站：</h3><h4 id="阿虚同学的储物柜https-www-axutongxue-com"><a href="#阿虚同学的储物柜https-www-axutongxue-com" class="headerlink" title="阿虚同学的储物柜https://www.axutongxue.com/"></a>阿虚同学的储物柜<a href="https://www.axutongxue.com/">https://www.axutongxue.com/</a></h4><p>不管是考证，看视频，听音乐，学习等资源，只有你想不到，没有它做不到，真正解决一个满足所有。</p><h4 id="爱寻匿https-www-aixunni-com"><a href="#爱寻匿https-www-aixunni-com" class="headerlink" title="爱寻匿https://www.aixunni.com/"></a>爱寻匿<a href="https://www.aixunni.com/">https://www.aixunni.com/</a></h4><p>资源整合网站，对比前一个可能稍少，网站ui美化较好，个人经常使用为观看影视剧</p><h4 id="lackaarhttp-lackar-com-aa"><a href="#lackaarhttp-lackar-com-aa" class="headerlink" title="lackaarhttp://lackar.com/aa/"></a>lackaar<a href="http://lackar.com/aa/">http://lackar.com/aa/</a></h4><p>这个我不熟，没怎么用过</p><h3 id="个人推荐使用网站分享："><a href="#个人推荐使用网站分享：" class="headerlink" title="个人推荐使用网站分享："></a>个人推荐使用网站分享：</h3><h4 id="朋友圈文案生成器https-pyq-shadiao-app"><a href="#朋友圈文案生成器https-pyq-shadiao-app" class="headerlink" title="朋友圈文案生成器https://pyq.shadiao.app/"></a>朋友圈文案生成器<a href="https://pyq.shadiao.app/">https://pyq.shadiao.app/</a></h4><p>顾名思义，想文案想的脑壳疼的时候可以使用一下，网站也同时集成了彩虹屁生成器，脏话生成器，毒鸡汤生成器，记仇表情包生成器，脑洞真不错！</p><h4 id="novip视频-电脑-https-www-novipnoad-com"><a href="#novip视频-电脑-https-www-novipnoad-com" class="headerlink" title="novip视频(电脑)https://www.novipnoad.com/"></a>novip视频(电脑)<a href="https://www.novipnoad.com/">https://www.novipnoad.com/</a></h4><p>在微信浏览器跳转为美团页面，适合在电脑端打开，有众多1080p超高清电影，电视剧等，最近可能由于使用的人数越来越多，很多视频因为版权原因播放不了，所以该怎么说呢，太多人知道也不见得是一种好事，但还是分享一下吧</p><h4 id="虫部落社区https-www-chongbuluo-com"><a href="#虫部落社区https-www-chongbuluo-com" class="headerlink" title="虫部落社区https://www.chongbuluo.com/"></a>虫部落社区<a href="https://www.chongbuluo.com/">https://www.chongbuluo.com/</a></h4><p>很棒的社区，自从偶然踏进了这里，感觉打开了新大陆，有很多网站都是在这里知晓。</p><h4 id="wallhavenhttps-wallhaven-cc"><a href="#wallhavenhttps-wallhaven-cc" class="headerlink" title="wallhavenhttps://wallhaven.cc/"></a>wallhaven<a href="https://wallhaven.cc/">https://wallhaven.cc/</a></h4><p>高清免费动漫壁纸网站，质量超高，个人博客使用的图片均来自这里</p><h3 id="其他网站"><a href="#其他网站" class="headerlink" title="其他网站"></a>其他网站</h3><h4 id="摆地摊进货渠道https-gitmind-cn-app-doc-37a515614"><a href="#摆地摊进货渠道https-gitmind-cn-app-doc-37a515614" class="headerlink" title="摆地摊进货渠道https://gitmind.cn/app/doc/37a515614"></a>摆地摊进货渠道<a href="https://gitmind.cn/app/doc/37a515614">https://gitmind.cn/app/doc/37a515614</a></h4><h4 id="英语打字网站（电脑）https-kaiyiwing-gitee-io-qwerty-learner"><a href="#英语打字网站（电脑）https-kaiyiwing-gitee-io-qwerty-learner" class="headerlink" title="英语打字网站（电脑）https://kaiyiwing.gitee.io/qwerty-learner/"></a>英语打字网站（电脑）<a href="https://kaiyiwing.gitee.io/qwerty-learner/">https://kaiyiwing.gitee.io/qwerty-learner/</a></h4><p>如果你需要一边练习打字，一边背诵单词，那这个网站可以满足你</p><h4 id="windows更新伪装（电脑）https-fakeupdate-net"><a href="#windows更新伪装（电脑）https-fakeupdate-net" class="headerlink" title="windows更新伪装（电脑）https://fakeupdate.net/"></a>windows更新伪装（电脑）<a href="https://fakeupdate.net/">https://fakeupdate.net/</a></h4><p>有时候你可能需要去上一下厕所，但又不想暴露电脑在做什么的时候，你可以打开这个网站，选择伪装更新的系统，按F11全屏，这时你的电脑似乎在做系统更新。可防止无关人士窥屏</p><h4 id="新片场https-www-xinpianchang-com"><a href="#新片场https-www-xinpianchang-com" class="headerlink" title="新片场https://www.xinpianchang.com/"></a>新片场<a href="https://www.xinpianchang.com/">https://www.xinpianchang.com/</a></h4><p>视频剪辑学习网站，在这里你可以看到很多业内剪辑人的作品</p><h4 id="照片处理网http-photops-com"><a href="#照片处理网http-photops-com" class="headerlink" title="照片处理网http://photops.com/"></a>照片处理网<a href="http://photops.com/">http://photops.com/</a></h4><p>也叫ps自学网，网站是老网站，看起来已经没落了，但还是有很多大神在这里留下了经典的教程资源</p><h4 id="找相似https-www-similarsites-com"><a href="#找相似https-www-similarsites-com" class="headerlink" title="找相似https://www.similarsites.com/"></a>找相似<a href="https://www.similarsites.com/">https://www.similarsites.com/</a></h4><p>这个网站可以寻找同类型，类似的网站</p><h4 id="位置服务https-www-opengps-cn"><a href="#位置服务https-www-opengps-cn" class="headerlink" title="位置服务https://www.opengps.cn/"></a>位置服务<a href="https://www.opengps.cn/">https://www.opengps.cn/</a></h4><p>可以寻找ip地址的定位</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>还有很多有趣的网站等着我们去发掘，如果有幸你正在使用的话，可以在留言分享一下，但凡这个贴子有点用的话，也留个言好吗！</p>]]></content>
       
       
       <categories>
@@ -105,14 +132,14 @@
       
       <categories>
           
-          <category> 转载 </category>
+          <category> 人生 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 人生 </tag>
+            <tag> 转载 </tag>
             
         </tags>
       
@@ -130,7 +157,7 @@
       
       <categories>
           
-          <category> 转载 </category>
+          <category> 人生 </category>
           
       </categories>
       
@@ -138,6 +165,8 @@
         <tags>
             
             <tag> 两性 </tag>
+            
+            <tag> 转载 </tag>
             
         </tags>
       
