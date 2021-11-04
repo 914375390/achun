@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title>为什么说链表在插入和删除上效率高于数组</title>
+      <link href="/2021/11/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E9%93%BE%E8%A1%A8%E5%9C%A8%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4%E4%B8%8A%E6%95%88%E7%8E%87%E9%AB%98%E4%BA%8E%E6%95%B0%E7%BB%84/"/>
+      <url>/2021/11/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E9%93%BE%E8%A1%A8%E5%9C%A8%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4%E4%B8%8A%E6%95%88%E7%8E%87%E9%AB%98%E4%BA%8E%E6%95%B0%E7%BB%84/</url>
+      
+        <content type="html"><![CDATA[<h3 id="链表和数组是两种截然不同的内存组织方式，正因如此，它们插入、删除、随机访问的时间复杂度正好相反。"><a href="#链表和数组是两种截然不同的内存组织方式，正因如此，它们插入、删除、随机访问的时间复杂度正好相反。" class="headerlink" title="链表和数组是两种截然不同的内存组织方式，正因如此，它们插入、删除、随机访问的时间复杂度正好相反。"></a>链表和数组是两种截然不同的内存组织方式，正因如此，它们插入、删除、随机访问的时间复杂度正好相反。</h3><p>数组使用的是连续的内存空间，可以利用空间局部性原理，借助 <a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/CPU%25E7%25BC%2593%25E5%25AD%2598">CPU cache</a>进行预读，所以访问效率更高。而链表不是连续存储，无法进行缓存，随机访问效率也较低。</p><p>数组的缺点是大小固定，一经声明就要占用整块连续的内存空间。如果声明的数组过大，系统可能没有足够的连续内存空间用于分配，就会导致“内存不足（out of memory）”。而如果声明的数组过小，当不够用时，又需要重新申请一块更大的内存，然后进行数据拷贝，非常费时。</p><p>而链表则没有大小限制，支持动态扩容。当然，因为链表中每个结点都需要存储前驱 / 后继结点的指针，所以内存消耗会翻倍。而且，对链表频繁的插入、删除操作会导致频繁的内存申请和释放，容易造成内存碎片和触发垃圾回收（Garbage Collection, GC）</p><h3 id="数组和链表插入删除操作的时间复杂度对比："><a href="#数组和链表插入删除操作的时间复杂度对比：" class="headerlink" title="数组和链表插入删除操作的时间复杂度对比："></a>数组和链表插入删除操作的时间复杂度对比：</h3><h4 id="在只知道下标时"><a href="#在只知道下标时" class="headerlink" title="在只知道下标时"></a>在只知道下标时</h4><p>数组：O（n）               需要移动其后所有项的位置</p><p>链表：O（n）               需要遍历其前面所有项以得到下标对应的项</p><h4 id="在拥有要操作的项的引用时"><a href="#在拥有要操作的项的引用时" class="headerlink" title="在拥有要操作的项的引用时"></a>在拥有要操作的项的引用时</h4><p>数组：O（n）               需要移动其后所有项的位置</p><p>链表：O（1）               无需遍历,可直接进行插入删除</p><h4 id="其实直接就插入删除的执行函数来看的话，链表和数组在只知道下标的情况下，其时间复杂度都是O（n），性能上是不会有太大差别的。因为数组不需要遍历，能直接取得要操作的对象，但是需要移动其后的所有项，而链表无法直接获取要操作的对象，需要遍历获取，之后直接删除或者插入，而不需要移动其他项。"><a href="#其实直接就插入删除的执行函数来看的话，链表和数组在只知道下标的情况下，其时间复杂度都是O（n），性能上是不会有太大差别的。因为数组不需要遍历，能直接取得要操作的对象，但是需要移动其后的所有项，而链表无法直接获取要操作的对象，需要遍历获取，之后直接删除或者插入，而不需要移动其他项。" class="headerlink" title="其实直接就插入删除的执行函数来看的话，链表和数组在只知道下标的情况下，其时间复杂度都是O（n），性能上是不会有太大差别的。因为数组不需要遍历，能直接取得要操作的对象，但是需要移动其后的所有项，而链表无法直接获取要操作的对象，需要遍历获取，之后直接删除或者插入，而不需要移动其他项。"></a>其实直接就插入删除的执行函数来看的话，链表和数组在只知道下标的情况下，其时间复杂度都是O（n），性能上是不会有太大差别的。因为数组不需要遍历，能直接取得要操作的对象，但是需要移动其后的所有项，而链表无法直接获取要操作的对象，需要遍历获取，之后直接删除或者插入，而不需要移动其他项。</h4><h4 id="之所以说链表的插入和删除比数组的性能好，并不是说在任何情况下链表的插入和删除效率都要比数组的高，而是链表插入删除的最差时间复杂度也就是O（n），而在已得到要操作的结点的引用时，它就能省去遍历的步骤直接插入删除，时间复杂度为O（1），并且数组会有比如扩容等操作造成很多额外的时间支出，以及内存碎片所导致的空间支出。"><a href="#之所以说链表的插入和删除比数组的性能好，并不是说在任何情况下链表的插入和删除效率都要比数组的高，而是链表插入删除的最差时间复杂度也就是O（n），而在已得到要操作的结点的引用时，它就能省去遍历的步骤直接插入删除，时间复杂度为O（1），并且数组会有比如扩容等操作造成很多额外的时间支出，以及内存碎片所导致的空间支出。" class="headerlink" title="之所以说链表的插入和删除比数组的性能好，并不是说在任何情况下链表的插入和删除效率都要比数组的高，而是链表插入删除的最差时间复杂度也就是O（n），而在已得到要操作的结点的引用时，它就能省去遍历的步骤直接插入删除，时间复杂度为O（1），并且数组会有比如扩容等操作造成很多额外的时间支出，以及内存碎片所导致的空间支出。"></a>之所以说链表的插入和删除比数组的性能好，并不是说在任何情况下链表的插入和删除效率都要比数组的高，而是链表插入删除的最差时间复杂度也就是O（n），而在已得到要操作的结点的引用时，它就能省去遍历的步骤直接插入删除，时间复杂度为O（1），并且数组会有比如扩容等操作造成很多额外的时间支出，以及内存碎片所导致的空间支出。</h4><h4 id="倘若不考虑这些，在只有下标的情况下执行插入和删除，它们的性能其实是没有太大区别的，就时间复杂度上来看都是O-n-，然而实际情况下是不可能不考虑这些的。"><a href="#倘若不考虑这些，在只有下标的情况下执行插入和删除，它们的性能其实是没有太大区别的，就时间复杂度上来看都是O-n-，然而实际情况下是不可能不考虑这些的。" class="headerlink" title="倘若不考虑这些，在只有下标的情况下执行插入和删除，它们的性能其实是没有太大区别的，就时间复杂度上来看都是O(n)，然而实际情况下是不可能不考虑这些的。"></a>倘若不考虑这些，在只有下标的情况下执行插入和删除，它们的性能其实是没有太大区别的，就时间复杂度上来看都是O(n)，然而实际情况下是不可能不考虑这些的。</h4><h4 id="所以我们可以简单的记住结论："><a href="#所以我们可以简单的记住结论：" class="headerlink" title="所以我们可以简单的记住结论："></a>所以我们可以简单的记住结论：</h4><h3 id="只需插入删除：链表性能好"><a href="#只需插入删除：链表性能好" class="headerlink" title="只需插入删除：链表性能好"></a>只需插入删除：链表性能好</h3><h3 id="只需查询修改：数组性能好"><a href="#只需查询修改：数组性能好" class="headerlink" title="只需查询修改：数组性能好"></a>只需查询修改：数组性能好</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>autojs之防代理vpn抓包</title>
+      <link href="/2021/11/04/autojs%E4%B9%8B%E9%98%B2%E4%BB%A3%E7%90%86vpn%E6%8A%93%E5%8C%85/"/>
+      <url>/2021/11/04/autojs%E4%B9%8B%E9%98%B2%E4%BB%A3%E7%90%86vpn%E6%8A%93%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<h2 id="防君子不防小人，这两种简单防抓包你有必要学一下"><a href="#防君子不防小人，这两种简单防抓包你有必要学一下" class="headerlink" title="防君子不防小人，这两种简单防抓包你有必要学一下"></a>防君子不防小人，这两种简单防抓包你有必要学一下</h2><h4 id="检测代理（fiddler，burp）"><a href="#检测代理（fiddler，burp）" class="headerlink" title="检测代理（fiddler，burp）"></a>检测代理（fiddler，burp）</h4><pre><code>let r = isWifiProxy(context);if (r) &#123;log(&quot;有 代理&quot;);&#125; else &#123;log(&quot;没有 代理&quot;);&#125;function isWifiProxy(context) &#123;importClass(android.os.Build);importClass(android.text.TextUtils);IS_ICS_OR_LATER = Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.ICE_CREAM_SANDWICH;let proxyAddress;let proxyPort;if (IS_ICS_OR_LATER) &#123;    proxyAddress = java.lang.System.getProperty(&quot;http.proxyHost&quot;);    portStr = java.lang.System.getProperty(&quot;http.proxyPort&quot;);    proxyPort = java.lang.Integer.parseInt(portStr != null ? portStr : &quot;-1&quot;);&#125; else &#123;    proxyAddress = android.net.Proxy.getHost(context);    proxyPort = android.net.Proxy.getPort(context);&#125;return !TextUtils.isEmpty(proxyAddress) &amp;&amp; proxyPort != -1;&#125;// //通知Java您要通过代理进行连接// System.getProperties().put(&quot;proxySet&quot;, &quot;true&quot;);// //指定代理所在的服务器// System.getProperties().put(&quot;proxyHost&quot;, &quot;myProxyMachineName&quot;);// //指定代理监听的端口// System.getProperties().put(&quot;proxyPort&quot;, &quot;85&quot;);// connection = url.openConnection();// password = &quot;username:password&quot;;// encodedPassword = base64Encode(password);// connection.setRequestProperty(&quot;Proxy-Authorization&quot;, encodedPassword);// props = System.getProperties();// props.put(&quot;http.proxyHost&quot;, &quot;192.168.0.150&quot;);// props.put(&quot;http.proxyPort&quot;, &quot;808&quot;);</code></pre><h4 id="vpn抓包检测（手机端小黄鸟）"><a href="#vpn抓包检测（手机端小黄鸟）" class="headerlink" title="vpn抓包检测（手机端小黄鸟）"></a>vpn抓包检测（手机端小黄鸟）</h4><pre><code>function isVPN() &#123;try &#123;    var niList = java.net.NetworkInterface.getNetworkInterfaces();    if (niList) &#123;    var VPN;    var arry = java.util.Collections.list(niList).toArray();    for (ary = 0; ary &lt; arry.length; ary++) &#123;        if (!arry[ary].isUp() || arry[ary].getInterfaceAddresses().size() == 0) &#123;        continue;        &#125;        if (arry[ary].getName().search(&quot;tun0&quot;) !== -1 || arry[ary].getName().search(&quot;ppp0&quot;) !== -1) &#123;        VPN = true;        return true;        &#125; else &#123;        VPN = false;        &#125;    &#125;    return VPN;    &#125;&#125; catch (error) &#123;&#125;&#125;log(isVPN());</code></pre><h4 id="禁止请求跳转，就是禁止vpn抓包"><a href="#禁止请求跳转，就是禁止vpn抓包" class="headerlink" title="禁止请求跳转，就是禁止vpn抓包"></a>禁止请求跳转，就是禁止vpn抓包</h4><pre><code>var okHttpClient = new okhttp3.OkHttpClient().newBuilder().followRedirects(false) //禁止自动跳转.followSslRedirects(false).build();</code></pre><h4 id="希望对你有所帮助"><a href="#希望对你有所帮助" class="headerlink" title="希望对你有所帮助"></a>希望对你有所帮助</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二创 </tag>
+            
+            <tag> autojs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>无线网卡windows仍在设置此设备的类配置，代码56</title>
+      <link href="/2021/11/04/%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1windows%E4%BB%8D%E5%9C%A8%E8%AE%BE%E7%BD%AE%E6%AD%A4%E8%AE%BE%E5%A4%87%E7%9A%84%E7%B1%BB%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%BB%A3%E7%A0%8156/"/>
+      <url>/2021/11/04/%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1windows%E4%BB%8D%E5%9C%A8%E8%AE%BE%E7%BD%AE%E6%AD%A4%E8%AE%BE%E5%A4%87%E7%9A%84%E7%B1%BB%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%BB%A3%E7%A0%8156/</url>
+      
+        <content type="html"><![CDATA[<h2 id="突然有一天，电脑一抽风，无线网卡故障不能使用了，打开设备管理器卸载驱动重新安装，重启也好，不管用-于是在网上找到这个方法，设置重启后完美解决，当当当！！"><a href="#突然有一天，电脑一抽风，无线网卡故障不能使用了，打开设备管理器卸载驱动重新安装，重启也好，不管用-于是在网上找到这个方法，设置重启后完美解决，当当当！！" class="headerlink" title="突然有一天，电脑一抽风，无线网卡故障不能使用了，打开设备管理器卸载驱动重新安装，重启也好，不管用!!于是在网上找到这个方法，设置重启后完美解决，当当当！！"></a>突然有一天，电脑一抽风，无线网卡故障不能使用了，打开设备管理器卸载驱动重新安装，重启也好，不管用!!于是在网上找到这个方法，设置重启后完美解决，当当当！！</h2><h3 id="网卡故障-windows仍在设置此设备的类配置，代码56！"><a href="#网卡故障-windows仍在设置此设备的类配置，代码56！" class="headerlink" title="网卡故障,windows仍在设置此设备的类配置，代码56！"></a>网卡故障,windows仍在设置此设备的类配置，代码56！</h3><p><img src="https://img-blog.csdnimg.cn/2020062211263118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NjE0MjQw,size_16,color_FFFFFF,t_70"></p><h3 id="解决方法：针对于硬件没有损坏的电脑，硬件如果损坏了只能换无线网卡了）"><a href="#解决方法：针对于硬件没有损坏的电脑，硬件如果损坏了只能换无线网卡了）" class="headerlink" title="解决方法：针对于硬件没有损坏的电脑，硬件如果损坏了只能换无线网卡了）"></a>解决方法：针对于硬件没有损坏的电脑，硬件如果损坏了只能换无线网卡了）</h3><h4 id="下载CCleaner，这里给上下载链接-https-www-ccleaner-com-ccleaner-点击下图第二个，安装后可以白嫖14天免费会员"><a href="#下载CCleaner，这里给上下载链接-https-www-ccleaner-com-ccleaner-点击下图第二个，安装后可以白嫖14天免费会员" class="headerlink" title="下载CCleaner，这里给上下载链接 https://www.ccleaner.com/ccleaner,点击下图第二个，安装后可以白嫖14天免费会员"></a>下载CCleaner，这里给上下载链接 <a href="https://www.ccleaner.com/ccleaner">https://www.ccleaner.com/ccleaner</a>,点击下图第二个，安装后可以白嫖14天免费会员</h4><p><img src="https://img-blog.csdnimg.cn/20200622113035415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NjE0MjQw,size_16,color_FFFFFF,t_70"></p><h4 id="进入软件，初始语言为英语，可以对照下图进入设置修改语言或直接进行操作（原理应该是清除注册表某些驱动留下来的遗留垃圾）"><a href="#进入软件，初始语言为英语，可以对照下图进入设置修改语言或直接进行操作（原理应该是清除注册表某些驱动留下来的遗留垃圾）" class="headerlink" title="进入软件，初始语言为英语，可以对照下图进入设置修改语言或直接进行操作（原理应该是清除注册表某些驱动留下来的遗留垃圾）"></a>进入软件，初始语言为英语，可以对照下图进入设置修改语言或直接进行操作（原理应该是清除注册表某些驱动留下来的遗留垃圾）</h4><p><img src="https://img-blog.csdnimg.cn/20200622113259946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NjE0MjQw,size_16,color_FFFFFF,t_70"></p><h4 id="清除完注册表，即修复完重启电脑wifi网卡就正常了，上图"><a href="#清除完注册表，即修复完重启电脑wifi网卡就正常了，上图" class="headerlink" title="清除完注册表，即修复完重启电脑wifi网卡就正常了，上图"></a>清除完注册表，即修复完重启电脑wifi网卡就正常了，上图</h4><p><img src="https://img-blog.csdnimg.cn/20200622130946271.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2NjE0MjQw,size_16,color_FFFFFF,t_70"></p><h4 id="希望可以帮助到你"><a href="#希望可以帮助到你" class="headerlink" title="希望可以帮助到你"></a>希望可以帮助到你</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二创 </tag>
+            
+            <tag> window故障 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>两个著名的心理学现象</title>
       <link href="/2021/09/15/%E4%B8%A4%E4%B8%AA%E8%91%97%E5%90%8D%E7%9A%84%E5%BF%83%E7%90%86%E5%AD%A6%E7%8E%B0%E8%B1%A1/"/>
       <url>/2021/09/15/%E4%B8%A4%E4%B8%AA%E8%91%97%E5%90%8D%E7%9A%84%E5%BF%83%E7%90%86%E5%AD%A6%E7%8E%B0%E8%B1%A1/</url>
